@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/E-lmir/CommandExecutor</PackageProjectUrl>
     <Description>Provides an easier way to execute comands like in cmd.exe.</Description>
     <PackageTags>cmd</PackageTags>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Executor
 {
-    public class CommandExecutor
+    public class CommandLineExecutor
     {
         private ProcessStartInfo processInfo;
-        public CommandExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = true };
+        public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = true };
 
         public void Execute(params string[] args)
         {        

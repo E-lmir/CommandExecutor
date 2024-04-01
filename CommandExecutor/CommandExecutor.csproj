@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>Command Executor</Title>
+    <Title>Command Line Executor</Title>
     <Authors>w1r3d</Authors>
     <Company />
     <PackageIcon>Nolla.png</PackageIcon>
     <RepositoryUrl>https://github.com/E-lmir/CommandExecutor</RepositoryUrl>
     <PackageReadmeFile>Description.md</PackageReadmeFile>
+    <PackageId>Command-Executor</PackageId>
+    <Product>CommandLineExecutor</Product>
+    <Version>1.0.1</Version>
+    <PackageProjectUrl>https://github.com/E-lmir/CommandExecutor</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

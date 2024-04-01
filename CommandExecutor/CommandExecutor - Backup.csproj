@@ -13,7 +13,7 @@
     <PackageReadmeFile>Description.md</PackageReadmeFile>
     <PackageId>CommandExecutor.CommandLineExecutor</PackageId>
     <Product>CommandLineExecutor</Product>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageProjectUrl>https://github.com/E-lmir/CommandExecutor</PackageProjectUrl>
     <Description>Provides an easier way to execute comands like in cmd.exe.</Description>
   </PropertyGroup>

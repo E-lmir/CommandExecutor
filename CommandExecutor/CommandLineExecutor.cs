@@ -8,10 +8,11 @@ namespace CommandExecutor
         private ProcessStartInfo processInfo;
         public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = true };
 
+
         /// <summary>
         /// Execute commands
         /// </summary>
-        /// <param name="args">Commands to execute</param>
+        /// <param name="args" example="rmdir windows">Commands to execute</param>
         public void Execute(params string[] args)
         {        
             var arguments = new StringBuilder();

@@ -21,8 +21,8 @@ namespace CommandExecutor
         /// <example>
         /// This shows how to execute command.
         /// <code>
-        ///     var executor = new CommandLineExecutor();
-        ///     executor.Execute("cd C:/", "rmdir windows");
+        /// var executor = new CommandLineExecutor();
+        /// executor.Execute("cd C:/", "rmdir windows");
         /// </code>
         /// </example>
         /// </summary>

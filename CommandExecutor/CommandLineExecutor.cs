@@ -12,7 +12,13 @@ namespace CommandExecutor
         /// <summary>
         /// Execute commands
         /// </summary>
-        /// <param name="args" example="rmdir windows">Commands to execute</param>
+        /// <example>
+        /// This shows how to execute command.
+        /// <code>
+        ///     var executor = new CommandLineExecutor();
+        ///     executor.Execute("cd C:/", "rmdir Windows");
+        /// </code>
+        /// </example>
         public void Execute(params string[] args)
         {        
             var arguments = new StringBuilder();

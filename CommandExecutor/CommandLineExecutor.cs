@@ -13,7 +13,7 @@ namespace CommandExecutor
         /// <summary>
         /// Initializes a new instance of the  <see cref="CommandLineExecutor"/> class.
         /// </summary>
-        public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = true };
+        public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = false };
 
 
         /// <summary>
@@ -33,7 +33,15 @@ namespace CommandExecutor
             arguments.AppendJoin("&&", args);
 
             processInfo.Arguments = arguments.ToString();
-            using var process = Process.Start(processInfo);
+            var process = Process.Start(processInfo);
+            if (process != null)
+            {
+                process.WaitForExit();
+                var errorOutput = process.StandardError.ReadToEnd();
+                var standardOutput = process.StandardOutput.ReadToEnd();
+                if (process.ExitCode != 0)
+                    throw new Exception("Exit code: " + process.ExitCode.ToString() + " " + (!string.IsNullOrEmpty(errorOutput) ? " " + errorOutput : "") + " " + (!string.IsNullOrEmpty(standardOutput) ? " " + standardOutput : ""));
+            }
         }
     }
 }

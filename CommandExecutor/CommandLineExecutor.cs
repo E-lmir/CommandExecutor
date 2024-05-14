@@ -13,7 +13,13 @@ namespace CommandExecutor
         /// <summary>
         /// Initializes a new instance of the  <see cref="CommandLineExecutor"/> class.
         /// </summary>
-        public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", UseShellExecute = false };
+        public CommandLineExecutor() => processInfo = new() { FileName = "cmd.exe", 
+            UseShellExecute = false, 
+            RedirectStandardInput = true, 
+            RedirectStandardOutput = false,
+            WindowStyle = ProcessWindowStyle.Hidden,
+            CreateNoWindow = true
+        };
 
 
         /// <summary>
@@ -26,7 +32,7 @@ namespace CommandExecutor
         /// </code>
         /// </example>
         /// </summary>
-        public void Execute(params string[] args)
+        public Process Execute(params string[] args)
         {        
             var arguments = new StringBuilder();
             arguments.Append("/C");
@@ -34,6 +40,7 @@ namespace CommandExecutor
 
             processInfo.Arguments = arguments.ToString();
             using var process = Process.Start(processInfo);
+            return process;
         }
     }
 }

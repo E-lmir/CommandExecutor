@@ -32,15 +32,18 @@ namespace CommandExecutor
         /// </code>
         /// </example>
         /// </summary>
-        public Process Execute(params string[] args)
+        public void Execute(bool waitForExit = false, params string[] args)
         {        
             var arguments = new StringBuilder();
             arguments.Append("/C");
             arguments.AppendJoin("&&", args);
 
             processInfo.Arguments = arguments.ToString();
-            using var process = Process.Start(processInfo);
-            return process;
+            using (var process = Process.Start(processInfo))
+            {
+                if (waitForExit)
+                    process.WaitForExit();
+            }          
         }
     }
 }

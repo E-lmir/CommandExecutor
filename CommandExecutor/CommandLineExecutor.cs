@@ -24,6 +24,8 @@ namespace CommandExecutor
 
         /// <summary>
         /// Execute commands.<br/>
+        /// <param name="waitForExit">Wait cmd.exe for exit</param>
+        /// <param name="args">Arguments</param>
         /// <example>
         /// This shows how to execute command.
         /// <code>

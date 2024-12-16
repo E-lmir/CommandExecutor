@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Text;
 
 namespace CommandExecutor
 {
     /// <summary>
-    /// Provides an easier way to execute comands.
+    /// Provides an easier way to execute commands.
     /// </summary>
     public class CommandLineExecutor
     {
@@ -14,12 +14,12 @@ namespace CommandExecutor
         /// Initializes a new instance of the <see cref="CommandLineExecutor"/> class.
         /// </summary>
         public CommandLineExecutor() => _processInfo = new() { 
-            FileName = "cmd.exe", 
-            UseShellExecute = false, 
-            RedirectStandardInput = true, 
-            RedirectStandardOutput = false,
-            WindowStyle = ProcessWindowStyle.Hidden,
-            CreateNoWindow = true
+            FileName = "cmd.exe",
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            RedirectStandardInput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
         };
 
         /// <summary>
@@ -31,9 +31,10 @@ namespace CommandExecutor
         /// executor.Execute("cd C:/", "rmdir windows");
         /// </code>
         /// </example>
-        /// <remarks>Wait proccess for exit</remarks>
+        /// <remarks>Wait process for exit.</remarks>
+        /// <return>Shell output.</return>
         /// </summary>
-        public void Execute(params string[] args) => this.Execute(true, args);
+        public string Execute(params string[] args) => Execute(true, args);
 
         /// <summary>
         /// Execute commands.<br/>
@@ -44,19 +45,25 @@ namespace CommandExecutor
         /// executor.Execute("cd C:/", "rmdir windows");
         /// </code>
         /// </example>
+        /// <return>Shell output.</return>
         /// </summary>
-        public void Execute(bool waitForExit, params string[] args)
-        {        
-            var arguments = new StringBuilder();
-            arguments.Append("/C");
-            arguments.AppendJoin("&&", args);
+        public string Execute(bool waitForExit, params string[] args)
+        {
+            Process cmdProcess = new Process();
+            cmdProcess.StartInfo = _processInfo;
+            cmdProcess.EnableRaisingEvents = true;
 
-            _processInfo.Arguments = arguments.ToString();
-            using (var process = Process.Start(_processInfo))
-            {
-                if (waitForExit)
-                    process.WaitForExit();
-            }
+            cmdProcess.Start();
+
+            foreach (var arg in args)
+              cmdProcess.StandardInput.WriteLine(arg);
+
+            cmdProcess.StandardInput.WriteLine("exit");
+
+            if (waitForExit)
+              cmdProcess.WaitForExit();
+
+            return cmdProcess.StandardOutput.ReadToEnd();
         }
     }
 }
